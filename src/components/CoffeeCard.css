@@ -1,0 +1,9 @@
+.test img {
+  width: 400px;
+  height: 350px;
+}
+.test {
+  display: inline-block;
+  width: 400px;
+  height: 550px;
+}

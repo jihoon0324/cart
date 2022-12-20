@@ -1,0 +1,34 @@
+header {
+}
+
+.row {
+  position: relative;
+  margin: 0;
+  height: 100px;
+  width: 100%;
+}
+.badge {
+  position: relative;
+  top: 16px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 5px;
+  z-index: 10;
+}
+
+header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  background-color: black;
+  color: white;
+}

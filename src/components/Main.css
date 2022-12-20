@@ -1,0 +1,17 @@
+main {
+  position: relative;
+  top: 100px;
+}
+
+.product_class {
+  width: 400px;
+  height: 350px;
+  flex-direction: column-reverse;
+  margin: 0;
+}
+.row_test {
+  display: inline-block;
+  width: 400px;
+  height: 350px;
+  flex-direction: column-reverse;
+}
