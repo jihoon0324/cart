@@ -15,7 +15,7 @@ const Cart = ({ orderInfo, dispatch }) => {
     const id = item;
     dispatch({ type: "removeToCart", payload: { id } });
   };
-
+  console.log(orderInfo);
   return (
     <div className="orderMain">
       <h1 className="text-center fw-bold">Cart</h1>

@@ -9,7 +9,7 @@ export const initialState = {
 
 const Reducer = (state, action) => {
   switch (action.type) {
-    case "addProductToCart":
+    case "addProductToCart": {
       const id = action.payload;
 
       const newOrder = Products.filter((addOrder) => {
@@ -19,7 +19,8 @@ const Reducer = (state, action) => {
       const time = date.getMilliseconds() + date.getMilliseconds();
 
       const newOrderList = {
-        id: id + time,
+        id: id,
+        tiemId: time * time,
         productName: newOrder[0].productName,
         imgUrl: newOrder[0].imgUrl,
         price: newOrder[0].price,
@@ -30,22 +31,32 @@ const Reducer = (state, action) => {
         total: state.total + newOrderList.price,
         cart: [...state.cart, newOrderList],
       };
+    }
+    case "updateToCart": {
+      const date = new Date();
+      const time = date.getMilliseconds() * date.getMilliseconds();
 
-    case "updateToCart":
+      const newOrderList = {
+        id: action.payload.id.id,
+        tiemId: time * time,
+        productName: action.payload.id.productName,
+        imgUrl: action.payload.id.imgUrl,
+        price: action.payload.id.price,
+      };
+
       return {
         count: state.count + 1,
         total: state.total + action.payload.id.price,
-        cart: [...state.cart, action.payload.id],
+        cart: [...state.cart, newOrderList],
       };
+    }
     case "removeToCart":
       return {
         count: state.count - 1,
         total: state.total - action.payload.id.price,
-        cart: state.cart.filter((remove) => {
-          console.log(remove.id, "terere");
-          console.log(action.payload.id.id, "tettt");
-          return remove.id !== action.payload.id.id;
-        }),
+        cart: state.cart.filter(
+          (remove) => remove.tiemId !== action.payload.id.tiemId
+        ),
       };
     default:
       return state;
