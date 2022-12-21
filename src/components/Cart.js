@@ -3,12 +3,18 @@ import { Col, Container, Row } from "react-bootstrap";
 import "./Cart.css";
 import { BsTrash } from "react-icons/bs";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
-
+import { motion } from "framer-motion";
 const Cart = ({ orderInfo, dispatch }) => {
   const add_menu = (item) => {
     const id = item;
 
     dispatch({ type: "updateToCart", payload: { id } });
+  };
+
+  const remove_each_menu = (item) => {
+    const id = item;
+
+    dispatch({ type: "removeEachToCart", payload: { id } });
   };
 
   const removeToCart = (item) => {
@@ -30,23 +36,41 @@ const Cart = ({ orderInfo, dispatch }) => {
                   </div>
                   <div>
                     <div className="orderInfo">
-                      <p className="text-center fw-bold  fs-5">
+                      <p className="text-center fw-bold  fs-3">
                         {order.productName}
                       </p>
                       <p className="subTitle_section">
                         <span className="subtitle">QTY</span>
-                        <span className="subtitle">
-                          <AiOutlinePlusCircle
-                            onClick={() => {
-                              add_menu(order);
-                            }}
-                          />
-                          1
-                        </span>
+
+                        <motion.span
+                          className="subtitle"
+                          whileTap={{ scale: 1.2 }}
+                          onClick={() => {
+                            add_menu(order);
+                          }}
+                        >
+                          <AiOutlinePlusCircle />
+                        </motion.span>
+                        <span className="fw-bold fs-5 ">{order.quantity}</span>
+                        <motion.span
+                          className="subtitle"
+                          whileTap={{ scale: 1.5 }}
+                          onClick={() => {
+                            remove_each_menu(order);
+                          }}
+                        >
+                          <AiOutlineMinusCircle />
+                        </motion.span>
                       </p>
                       <p className="subTitle_section">
                         <span className="subtitle">Price</span>
                         <span className="subtitle">${order.price} </span>
+                      </p>
+                      <p className="subTitle_section">
+                        <span className="subtitle">Sub-total</span>
+                        <span className="subtitle">
+                          ${(order.price * order.quantity).toFixed(2)}{" "}
+                        </span>
                       </p>
                       <p className="d-flex justify-content-end">
                         <BsTrash
